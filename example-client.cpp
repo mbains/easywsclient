@@ -7,18 +7,28 @@
 #include <assert.h>
 #include <stdio.h>
 #include <string>
+#include <string.h>
 
+
+#define BUF_SIZE 8192
+
+static char buf[BUF_SIZE+1];
 using easywsclient::WebSocket;
 static WebSocket::pointer ws = NULL;
 
 void handle_message(const std::string & message)
 {
     printf(">>> %s\n", message.c_str());
-    if (message == "world") { ws->close(); }
+    if (message == "world") { 
+        printf("closing socket\n");
+        ws->close(); 
+    }
 }
 
 int main()
 {
+    memset(buf, 'A', BUF_SIZE-1);
+    buf[BUF_SIZE] = 0;
 #ifdef _WIN32
     INT rc;
     WSADATA wsaData;
@@ -30,10 +40,12 @@ int main()
     }
 #endif
 
-    ws = WebSocket::from_url("ws://localhost:8126/foo");
+    ws = WebSocket::from_url("ws://localhost:8127/foo");
     assert(ws);
     ws->send("goodbye");
     ws->send("hello");
+    //ws->send("world");
+//    ws->send(buf);
     while (ws->getReadyState() != WebSocket::CLOSED) {
       ws->poll();
       ws->dispatch(handle_message);

@@ -25,7 +25,7 @@ int main()
     }
 #endif
 
-    std::unique_ptr<WebSocket> ws(WebSocket::from_url("ws://localhost:8126/foo"));
+    std::unique_ptr<WebSocket> ws(WebSocket::from_url("ws://localhost:8127/foo"));
     assert(ws);
     ws->send("goodbye");
     ws->send("hello");

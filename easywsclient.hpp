@@ -20,7 +20,7 @@ class WebSocket {
   public:
     typedef WebSocket * pointer;
     typedef enum readyStateValues { CLOSING, CLOSED, CONNECTING, OPEN } readyStateValues;
-
+    
     // Factories:
     static pointer create_dummy();
     static pointer from_url(const std::string& url, const std::string& origin = std::string());

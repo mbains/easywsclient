@@ -1,4 +1,4 @@
-CXXFLAGS = -std=gnu++0x -Wall
+CXXFLAGS = -std=gnu++0x -Wall -g3
 LDLIBS = -lstdc++
 .PHONY: all clean test
 all: example-client example-client-cpp11

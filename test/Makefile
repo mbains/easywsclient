@@ -1,4 +1,4 @@
-include gtest.mk
+#include gtest.mk
 
 CXXFLAGS = -std=gnu++1y -Wall -I..
 LDLIBS +=
